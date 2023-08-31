@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using ReaLTaiizor.Controls;
+using ReaLTaiizor.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,75 +10,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using MySql.Data.MySqlClient;
-using ReaLTaiizor.Controls;
-using ReaLTaiizor.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace exemplo_treino
 {
-    public partial class FormCadastro : MaterialForm
+    public partial class FormProfessor : MaterialForm
     {
- 
         bool isAlteracao = false;
         string cs = @"server=localhost;" +
                     "uid=root;" +
                     "pwd=;" +
                     "database=academico";
-        public FormCadastro()
+        public FormProfessor()
         {
             InitializeComponent();
         }
 
-        private void FormCadastro_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialTextBoxEdit1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialButton3_Click(object sender, EventArgs e)
-        {
-            Editar();
-        }
-
         private void Editar()
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 isAlteracao = true;
                 var linha = dataGridView1.SelectedRows[0];
                 txtid.Text = linha.Cells["id"].Value.ToString();
-                txtmatricula.Text = linha.Cells["matricula"].Value.ToString();
+                txtmatriculaprof.Text = linha.Cells["matricula"].Value.ToString();
                 txtdata.Text = linha.Cells["dt_nascimento"].Value.ToString();
                 txtNome.Text = linha.Cells["nome"].Value.ToString();
                 txtendereco.Text = linha.Cells["endereco"].Value.ToString();
                 txtbairro.Text = linha.Cells["bairro"].Value.ToString();
                 txtcidade.Text = linha.Cells["cidade"].Value.ToString();
                 txtuf.Text = linha.Cells["estado"].Value.ToString();
-                txtsenha.Text = linha.Cells["senha"].Value.ToString();
-                tabpage.SelectedIndex = 0;
-                txtmatricula.Focus();
+                txttitulacao.Text = linha.Cells["titulacao"].Value.ToString();
+                txttitulacao.Text = linha.Cells["area_formacao"].Value.ToString();
+                tabpageprof.SelectedIndex = 0;
+                txtmatriculaprof.Focus();
             }
         }
-
-        private void materialButton1_Click(object sender, EventArgs e)
-        {
-            if (ValidarFormulario())
-            {
-                Salvar();
-                tabpage.SelectedIndex = 1;
-            }
-        }
-
         private void LimpaCampos()
         {
             isAlteracao = false;
-            foreach (var control in tabPage1.Controls)
+            foreach (var control in tabpageprof.Controls)
             {
                 if (control is MaterialTextBoxEdit)
                 {
@@ -92,13 +65,13 @@ namespace exemplo_treino
         {
             var con = new MySqlConnection(cs);
             con.Open();
-            var sql = "SELECT * FROM aluno";
+            var sql = "SELECT * FROM professor";
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
             var dt = new DataTable();
             sqlAd.Fill(dt);
 
-            dataGridView1.DataSource= dt;
+            dataGridView1.DataSource = dt;
             con.Close();
         }
 
@@ -110,17 +83,17 @@ namespace exemplo_treino
 
             if (isAlteracao)
             {
-                sql = "UPDATE aluno set " + "matricula= @matricula," + "dt_nascimento=@dt_nascimento," + "nome= @nome," + "endereco=@endereco," + "bairro = @bairro," + "cidade = @cidade," + "estado = @estado," + "senha = @senha" + " where id = @id";
-                
+                sql = "UPDATE professor set " + "matricula= @matricula," + "dt_nascimento=@dt_nascimento," + "nome= @nome," + "endereco=@endereco," + "bairro = @bairro," + "cidade = @cidade," + "estado = @estado," + "titulacao = @titulacao,"+"area_formacao=@area_formacao" + " where id = @id";
+
             }
             else
             {
-                sql = "INSERT INTO aluno" + "(matricula, dt_nascimento, nome, endereco, bairro, cidade, estado, senha)" +
-                              "values" + "(@matricula, @dt_nascimento, @nome, @endereco, @bairro, @cidade, @estado, @senha)";
+                sql = "INSERT INTO professor" + "(matricula, dt_nascimento, nome, endereco, bairro, cidade, estado, titulacao, area_formacao)" +
+                              "values" + "(@matricula, @dt_nascimento, @nome, @endereco, @bairro, @cidade, @estado, @titulacao, @area_formacao)";
 
             }
             var cmd = new MySqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@matricula", txtmatricula.Text);
+            cmd.Parameters.AddWithValue("@matricula", txtmatriculaprof.Text);
             DateTime.TryParse(txtdata.Text, out var dataNascimento);
             cmd.Parameters.AddWithValue("@dt_nascimento", dataNascimento);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
@@ -128,7 +101,9 @@ namespace exemplo_treino
             cmd.Parameters.AddWithValue("@bairro", txtbairro.Text);
             cmd.Parameters.AddWithValue("@cidade", txtcidade.Text);
             cmd.Parameters.AddWithValue("@estado", txtuf.Text);
-            cmd.Parameters.AddWithValue("@senha", txtsenha.Text);
+            cmd.Parameters.AddWithValue("@titulacao", txttitulacao.Text);
+            cmd.Parameters.AddWithValue("@area_formacao", txttitulacao.Text);
+
             if (isAlteracao)
                 cmd.Parameters.AddWithValue("@id", txtid.Text);
             cmd.Prepare();
@@ -138,10 +113,10 @@ namespace exemplo_treino
 
         private bool ValidarFormulario()
         {
-            if (string.IsNullOrEmpty(txtmatricula.Text))
+            if (string.IsNullOrEmpty(txtmatriculaprof.Text))
             {
                 MessageBox.Show("Mátricula é Obrigátoria", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtmatricula.Focus();
+                txtmatriculaprof.Focus();
 
                 return false;
             }
@@ -149,13 +124,6 @@ namespace exemplo_treino
             {
                 MessageBox.Show("Nome é Obrigátoria", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNome.Focus();
-
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtsenha.Text))
-            {
-                MessageBox.Show("Senha é Obrigátoria", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtsenha.Focus();
 
                 return false;
             }
@@ -183,6 +151,47 @@ namespace exemplo_treino
             return true;
         }
 
+        private void aloneComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialTextBoxEdit4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (ValidarFormulario())
+            {
+                Salvar();
+                tabpageprof.SelectedIndex = 1;
+            }
+        }
+
+        private void Deletar(int id)
+        {
+            var con = new MySqlConnection(cs);
+            con.Open();
+            var sql = "DELETE FROM professor WHERE  id = @id";
+            var cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tabPage2_Enter(object sender, EventArgs e)
         {
             carregaGrid();
@@ -190,14 +199,14 @@ namespace exemplo_treino
 
         private void materialButton5_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count>0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                if(MessageBox.Show("Deseja deletar", "IFSP", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Deseja deletar", "IFSP", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     var id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
                     Deletar(id);
                     carregaGrid();
-                    
+
                 }
                 else
                 {
@@ -206,50 +215,26 @@ namespace exemplo_treino
             }
         }
 
-        private void Deletar(int id)
+        private void materialButton3_Click(object sender, EventArgs e)
         {
-            var con = new MySqlConnection(cs);
-            con.Open();
-            var sql = "DELETE FROM ALUNO WHERE  id = @id";
-            var cmd = new MySqlCommand (sql, con);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
-
+            Editar();
         }
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
             LimpaCampos();
-            tabpage.SelectedIndex= 0;
-            txtmatricula.Focus();
+            tabpageprof.SelectedIndex = 0;
+            txtmatriculaprof.Focus();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja cancelar a operação?", "IFSP", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 LimpaCampos();
-                tabpage.SelectedIndex = 1;
-                txtmatricula.Focus();
+                tabpageprof.SelectedIndex = 1;
+                txtmatriculaprof.Focus();
             }
         }
-
-        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Editar();
-        }
-
-        private void tabpage_Enter(object sender, EventArgs e)
-        {
-            carregaGrid();
-        }
-
-
     }
 }

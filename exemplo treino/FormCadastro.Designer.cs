@@ -258,6 +258,7 @@ namespace exemplo_treino
             this.txtuf.Size = new System.Drawing.Size(121, 49);
             this.txtuf.StartIndex = 0;
             this.txtuf.TabIndex = 6;
+            this.txtuf.SelectedIndexChanged += new System.EventHandler(this.txtuf_SelectedIndexChanged);
             // 
             // txtcidade
             // 

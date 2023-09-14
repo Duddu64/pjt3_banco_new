@@ -250,6 +250,9 @@ namespace exemplo_treino
             carregaGrid();
         }
 
+        private void txtuf_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

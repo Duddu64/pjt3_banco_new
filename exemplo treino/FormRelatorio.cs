@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using ReaLTaiizor.Forms;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
+using Spire.Pdf.Tables;
 
 namespace exemplo_treino
 {
@@ -38,10 +41,10 @@ namespace exemplo_treino
                 sql += "and cidade = @cidade";
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
-            if (materialComboBox1.Text != "")
-                sqlAd.SelectCommand.Parameters.AddWithValue("@cidade", textbox.Text);
             if (textbox.Text != "")
-                sqlAd.SelectCommand.Parameters.AddWithValue("@cidade", materialComboBox1.Text);
+                sqlAd.SelectCommand.Parameters.AddWithValue("@cidade", textbox.Text);
+            if (materialComboBox1.Text != "")
+                sqlAd.SelectCommand.Parameters.AddWithValue("@estado", materialComboBox1.Text);
             var dt = new DataTable();
             sqlAd.Fill(dt);
             con.Close();
@@ -49,11 +52,25 @@ namespace exemplo_treino
             PdfSection sec = doc.Sections.Add();
             sec.PageSettings.Width = PdfPageSize.A4.Width;
             PdfPageBase page = sec.Pages.Add();
-            float y = 20;
+            int y = 20;
             PdfBrush brush1 = PdfBrushes.Black;
             PdfTrueTypeFont font1 = new PdfTrueTypeFont(new Font("Arial", 16f, FontStyle.Bold));
             PdfStringFormat format1 = new PdfStringFormat(PdfTextAlignment.Center);
             page.Canvas.DrawString("Relatório de Alunos", font1, brush1, page.Canvas.ClientSize.Width / 2, y, format1);
+
+            PdfTable table = new PdfTable();
+            table.Style.CellPadding = 2;
+            table.Style.BorderPen = new PdfPen(brush1, 0.75f);
+            table.Style.HeaderStyle.StringFormat= new PdfStringFormat(PdfTextAlignment.Center);
+            table.Style.HeaderSource = PdfHeaderSource.ColumnCaptions;
+            table.Style.ShowHeader=true;
+            table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.DarkOrange;
+            table.DataSource = dt;
+            foreach(PdfColumn col in table.Columns)
+            {
+                col.StringFormat=new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            }
+            table.Draw(page, new Point(0, y+30));
 
             doc.SaveToFile("RelatorioAlunos.pdf");
 
@@ -77,9 +94,41 @@ namespace exemplo_treino
             }
         }
 
+        private void SendToPrinter()
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = materialComboBox3.Text;
+            info.FileName = @"RelatorioAlunos";
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+                p.Kill();
+        }
+
         private void materialButton2_Click(object sender, EventArgs e)
         {
             MontaRelatorio();
+            SendToPrinter();
+
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            MontaRelatorio();
+            var p = new Process();
+            p.StartInfo = new ProcessStartInfo(@"RelatorioAlunos.pdf")
+            {
+                UseShellExecute = true,    
+            };
+
+            p.Start();
         }
     }
 }

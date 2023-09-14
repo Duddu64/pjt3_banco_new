@@ -15,6 +15,8 @@ using ReaLTaiizor.Forms;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using Spire.Pdf.Tables;
+using System.Drawing.Printing;
+using System.Reflection.Metadata;
 
 namespace exemplo_treino
 {
@@ -96,20 +98,7 @@ namespace exemplo_treino
 
         private void SendToPrinter()
         {
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.Verb = materialComboBox3.Text;
-            info.FileName = @"RelatorioAlunos";
-            info.CreateNoWindow = true;
-            info.WindowStyle = ProcessWindowStyle.Hidden;
-
-            Process p = new Process();
-            p.StartInfo = info;
-            p.Start();
-
-            p.WaitForInputIdle();
-            System.Threading.Thread.Sleep(3000);
-            if (false == p.CloseMainWindow())
-                p.Kill();
+            
         }
 
         private void materialButton2_Click(object sender, EventArgs e)

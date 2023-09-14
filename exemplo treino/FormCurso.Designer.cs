@@ -142,6 +142,7 @@
             this.txtid.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtid.TrailingIcon = null;
             this.txtid.UseSystemPasswordChar = false;
+            this.txtid.Click += new System.EventHandler(this.txtid_Click);
             // 
             // txtNome
             // 
@@ -273,6 +274,7 @@
             this.tabPage2.Size = new System.Drawing.Size(757, 272);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Consulta";
+            this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
             // dataGridView1
             // 
@@ -287,6 +289,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(747, 199);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // materialButton5

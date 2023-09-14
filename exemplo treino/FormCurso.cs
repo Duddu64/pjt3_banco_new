@@ -64,7 +64,7 @@ namespace exemplo_treino
         {
             var con = new MySqlConnection(cs);
             con.Open();
-            var sql = "SELECT * FROM professor";
+            var sql = "SELECT * FROM curso";
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
             var dt = new DataTable();
@@ -186,6 +186,21 @@ namespace exemplo_treino
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             Editar();
+        }
+
+        private void txtid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Enter(object sender, EventArgs e)
+        {
+            carregaGrid();
         }
     }
 }

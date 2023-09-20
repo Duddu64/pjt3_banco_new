@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Crypto.Engines;
 using ReaLTaiizor.Controls;
 using ReaLTaiizor.Forms;
 using System;
@@ -92,8 +93,7 @@ namespace exemplo_treino
 
             }
             var cmd = new MySqlCommand(sql, con);
-            DateTime.TryParse(txtdata.Text, out var AnoCriacao);
-            cmd.Parameters.AddWithValue("@ano_criacao", AnoCriacao);
+            cmd.Parameters.AddWithValue("@ano_criacao", txtdata.Text);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@tipo", txttipo.Text);
 
@@ -113,6 +113,7 @@ namespace exemplo_treino
 
                 return false;
             }
+
             if (string.IsNullOrEmpty(txtdata.Text))
             {
                 MessageBox.Show("Ano de Criação é Obrigátorio", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);

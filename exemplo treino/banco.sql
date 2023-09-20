@@ -5,7 +5,7 @@ USE academico;
 CREATE TABLE aluno(
 	id				int				NOT NULL AUTO_INCREMENT,
 	matricula		varchar(15)		NOT NULL,
-    dt_nascimento	datetime		NOT NULL,
+    dt_nascimento	date		NOT NULL,
 	nome			varchar(100)	NOT NULL,
 	endereco		varchar(100)	NOT NULL,
 	bairro			varchar(100)	NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE curso(
 CREATE TABLE professor(
 	id int	NOT NULL AUTO_INCREMENT,
 	matricula varchar(15) NOT NULL,
-	dt_nascimento datetime NOT NULL,
+	dt_nascimento date NOT NULL,
 	nome varchar(100) NOT NULL,
 	titulacao varchar(100) NOT NULL,
 	-- graduação, especialização, mestrado, doutorado

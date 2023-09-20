@@ -110,7 +110,7 @@
             this.txttipo.Name = "txttipo";
             this.txttipo.Size = new System.Drawing.Size(444, 49);
             this.txttipo.StartIndex = 0;
-            this.txttipo.TabIndex = 15;
+            this.txttipo.TabIndex = 1;
             // 
             // txtid
             // 
@@ -122,7 +122,7 @@
             this.txtid.Depth = 0;
             this.txtid.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtid.HideSelection = true;
-            this.txtid.Hint = "id";
+            this.txtid.Hint = "ID";
             this.txtid.LeadingIcon = null;
             this.txtid.Location = new System.Drawing.Point(584, 6);
             this.txtid.MaxLength = 32767;
@@ -137,7 +137,7 @@
             this.txtid.SelectionStart = 0;
             this.txtid.ShortcutsEnabled = true;
             this.txtid.Size = new System.Drawing.Size(135, 48);
-            this.txtid.TabIndex = 14;
+            this.txtid.TabIndex = 1;
             this.txtid.TabStop = false;
             this.txtid.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtid.TrailingIcon = null;
@@ -169,7 +169,7 @@
             this.txtNome.SelectionStart = 0;
             this.txtNome.ShortcutsEnabled = true;
             this.txtNome.Size = new System.Drawing.Size(559, 48);
-            this.txtNome.TabIndex = 9;
+            this.txtNome.TabIndex = 0;
             this.txtNome.TabStop = false;
             this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtNome.TrailingIcon = null;
@@ -192,7 +192,7 @@
             this.txtdata.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtdata.LeadingIcon = null;
             this.txtdata.Location = new System.Drawing.Point(469, 60);
-            this.txtdata.Mask = "99/99/9999";
+            this.txtdata.Mask = "9999";
             this.txtdata.MaxLength = 32767;
             this.txtdata.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             this.txtdata.Name = "txtdata";
@@ -206,13 +206,13 @@
             this.txtdata.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtdata.SelectedText = "";
             this.txtdata.SelectionLength = 0;
-            this.txtdata.SelectionStart = 0;
+            this.txtdata.SelectionStart = 4;
             this.txtdata.ShortcutsEnabled = true;
             this.txtdata.Size = new System.Drawing.Size(250, 48);
             this.txtdata.SkipLiterals = true;
-            this.txtdata.TabIndex = 8;
+            this.txtdata.TabIndex = 2;
             this.txtdata.TabStop = false;
-            this.txtdata.Text = "  /  /";
+            this.txtdata.Text = "2023";
             this.txtdata.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtdata.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
             this.txtdata.TrailingIcon = null;
@@ -233,7 +233,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnCancelar.Size = new System.Drawing.Size(96, 36);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnCancelar.UseAccentColor = false;
@@ -254,7 +254,7 @@
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnSalvar.Size = new System.Drawing.Size(76, 36);
-            this.btnSalvar.TabIndex = 0;
+            this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnSalvar.UseAccentColor = false;

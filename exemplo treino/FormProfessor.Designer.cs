@@ -145,7 +145,7 @@
             this.txtuf.Name = "txtuf";
             this.txtuf.Size = new System.Drawing.Size(250, 49);
             this.txtuf.StartIndex = 0;
-            this.txtuf.TabIndex = 16;
+            this.txtuf.TabIndex = 8;
             // 
             // txttitulacao
             // 
@@ -173,7 +173,7 @@
             this.txttitulacao.Name = "txttitulacao";
             this.txttitulacao.Size = new System.Drawing.Size(250, 49);
             this.txttitulacao.StartIndex = 0;
-            this.txttitulacao.TabIndex = 15;
+            this.txttitulacao.TabIndex = 4;
             // 
             // txtid
             // 
@@ -200,7 +200,7 @@
             this.txtid.SelectionStart = 0;
             this.txtid.ShortcutsEnabled = true;
             this.txtid.Size = new System.Drawing.Size(135, 48);
-            this.txtid.TabIndex = 14;
+            this.txtid.TabIndex = 1;
             this.txtid.TabStop = false;
             this.txtid.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtid.TrailingIcon = null;
@@ -231,7 +231,7 @@
             this.txtcidade.SelectionStart = 0;
             this.txtcidade.ShortcutsEnabled = true;
             this.txtcidade.Size = new System.Drawing.Size(444, 48);
-            this.txtcidade.TabIndex = 13;
+            this.txtcidade.TabIndex = 7;
             this.txtcidade.TabStop = false;
             this.txtcidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtcidade.TrailingIcon = null;
@@ -262,7 +262,7 @@
             this.txtbairro.SelectionStart = 0;
             this.txtbairro.ShortcutsEnabled = true;
             this.txtbairro.Size = new System.Drawing.Size(700, 48);
-            this.txtbairro.TabIndex = 12;
+            this.txtbairro.TabIndex = 6;
             this.txtbairro.TabStop = false;
             this.txtbairro.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtbairro.TrailingIcon = null;
@@ -294,7 +294,7 @@
             this.txtendereco.SelectionStart = 0;
             this.txtendereco.ShortcutsEnabled = true;
             this.txtendereco.Size = new System.Drawing.Size(700, 48);
-            this.txtendereco.TabIndex = 11;
+            this.txtendereco.TabIndex = 5;
             this.txtendereco.TabStop = false;
             this.txtendereco.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtendereco.TrailingIcon = null;
@@ -325,7 +325,7 @@
             this.txtarea.SelectionStart = 0;
             this.txtarea.ShortcutsEnabled = true;
             this.txtarea.Size = new System.Drawing.Size(444, 48);
-            this.txtarea.TabIndex = 10;
+            this.txtarea.TabIndex = 3;
             this.txtarea.TabStop = false;
             this.txtarea.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtarea.TrailingIcon = null;
@@ -356,7 +356,7 @@
             this.txtNome.SelectionStart = 0;
             this.txtNome.ShortcutsEnabled = true;
             this.txtNome.Size = new System.Drawing.Size(444, 48);
-            this.txtNome.TabIndex = 9;
+            this.txtNome.TabIndex = 1;
             this.txtNome.TabStop = false;
             this.txtNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtNome.TrailingIcon = null;
@@ -396,7 +396,7 @@
             this.txtdata.ShortcutsEnabled = true;
             this.txtdata.Size = new System.Drawing.Size(250, 48);
             this.txtdata.SkipLiterals = true;
-            this.txtdata.TabIndex = 8;
+            this.txtdata.TabIndex = 2;
             this.txtdata.TabStop = false;
             this.txtdata.Text = "  /  /";
             this.txtdata.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -430,7 +430,7 @@
             this.txtmatriculaprof.SelectionStart = 0;
             this.txtmatriculaprof.ShortcutsEnabled = true;
             this.txtmatriculaprof.Size = new System.Drawing.Size(559, 48);
-            this.txtmatriculaprof.TabIndex = 2;
+            this.txtmatriculaprof.TabIndex = 0;
             this.txtmatriculaprof.TabStop = false;
             this.txtmatriculaprof.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtmatriculaprof.TrailingIcon = null;
@@ -450,7 +450,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnCancelar.Size = new System.Drawing.Size(96, 36);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnCancelar.UseAccentColor = false;
@@ -471,7 +471,7 @@
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnSalvar.Size = new System.Drawing.Size(76, 36);
-            this.btnSalvar.TabIndex = 0;
+            this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnSalvar.UseAccentColor = false;
